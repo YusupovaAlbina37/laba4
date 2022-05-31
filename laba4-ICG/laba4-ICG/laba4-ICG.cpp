@@ -48,7 +48,7 @@ public:
 		m_pTexture = NULL;
 		m_pEffect = NULL;
 		m_scale = 0.0f;
-		m_directionalLight.Color = vec3(1.0f, 1.0f, 1.0f); //установка цвета света
+		m_directionalLight.Color = vec3(1.0f, 1.0f, 1.0f); //установка цвета 
 		m_directionalLight.AmbientIntensity = 0.5f; //установка инсенсивности фонового освещения
 
 		m_directionalLight.DiffuseIntensity = 0.75f;//установка интесивности рассеивания света
@@ -62,7 +62,7 @@ public:
 	}
 	bool Init() //берет на себя заботу о создании эффектов, загрузки текстуры и создание буферов вершин и индексов
 	{
-		vec3 Pos(0.0f, 0.0f, -3.0f);
+		vec3 Pos(0.0f, 0.0f, -1.0f);
 		vec3 Target(0.0f, 0.0f, 1.0f);
 		vec3 Up(0.0, 1.0f, 0.0f);
 		
@@ -119,8 +119,11 @@ public:
 
 		const mat4* WorldTransformation = p.GetWorldTrans();////
 		m_pEffect->SetWorldMatrix(WorldTransformation);////
-
 		m_pEffect->SetDirectionalLight(m_directionalLight);
+
+		m_pEffect->SetEyeWorldPos(m_pGameCamera->GetPos()); /////
+		m_pEffect->SetMatSpecularIntensity(1.0f);/////
+		m_pEffect->SetMatSpecularPower(32);/////
 
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
@@ -241,7 +244,7 @@ int main(int argc, char **argv)
 {
 	GLUTBackendInit(argc, argv);
 
-	if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 32, false, "Tutorial 18")) 
+	if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 32, false, "Tutorial 19")) 
 	{
 		return 1;
 	}
