@@ -172,6 +172,7 @@
     <ClInclude Include="pipeline4.h" />
     <ClInclude Include="technique.h" />
     <ClInclude Include="texture4.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

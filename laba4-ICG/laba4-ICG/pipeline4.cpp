@@ -60,20 +60,29 @@ void Pipeline::InitPerspectiveProj(mat4& m) const
 	m[3][0] = 0.0f;                     m[3][1] = 0.0f;              m[3][2] = 1.0f;                     m[3][3] = 0.0;
 }
 
-const mat4* Pipeline::GetTrans()
+const mat4* Pipeline::GetWorldTrans()////
 {
-	mat4 ScaleTrans, RotateTrans, TranslationTrans, CameraTranslationTrans, CameraRotateTrans, PersProjTrans;
+	mat4 ScaleTrans, RotateTrans, TranslationTrans;
 
 	InitScaleTransform(ScaleTrans);
 	InitRotateTransform(RotateTrans);
 	InitTranslationTransform(m_worldPos.x, m_worldPos.y, m_worldPos.z, TranslationTrans);
+
+	m_WorldTransformation = TranslationTrans * RotateTrans * ScaleTrans;
+
+	return &m_WorldTransformation;
+}////
+
+const mat4* Pipeline::GetWVPTrans()////
+{
+	GetWorldTrans();
+
+	mat4 CameraTranslationTrans, CameraRotateTrans, PersProjTrans;
+
 	InitTranslationTransform(-m_camera.Pos.x, -m_camera.Pos.y, -m_camera.Pos.z, CameraTranslationTrans);
 	InitCameraTransform(CameraRotateTrans, m_camera.Target, m_camera.Up);
 	InitPerspectiveProj(PersProjTrans);
 
-	m_transformation = CameraRotateTrans * CameraTranslationTrans * TranslationTrans * RotateTrans * ScaleTrans  * PersProjTrans;
-
-
-
-	return &m_transformation;
-}
+	m_WVPtransformation = CameraRotateTrans * CameraTranslationTrans * m_WorldTransformation * PersProjTrans;//
+	return &m_WVPtransformation;
+}////

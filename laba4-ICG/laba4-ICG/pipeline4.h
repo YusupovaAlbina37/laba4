@@ -67,7 +67,9 @@ public:
 		m[3][0] = 0.0f; m[3][1] = 0.0f; m[3][2] = 0.0f; m[3][3] = 1.0f;
 	}
 
-	const mat4* GetTrans();
+	const mat4* GetWVPTrans();////
+
+	const mat4* GetWorldTrans();////
 
 private:
 	void InitScaleTransform(mat4& m) const;
@@ -95,5 +97,8 @@ private:
 		vec3 Up; //верхний вектор
 	} m_camera;
 
-	mat4 m_transformation;
+	mat4 m_WVPtransformation;////
+
+	mat4 m_WorldTransformation;////
+	//mat4 m_transformation;
 };

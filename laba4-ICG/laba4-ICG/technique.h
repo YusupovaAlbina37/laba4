@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <GL/glew.h>
 #include <list>
 #include "camera4.h"
 

@@ -39,7 +39,7 @@ bool Technique::AddShader(GLenum ShaderType, const char* pShaderText)
 
 	if (ShaderObj == 0) {
 		fprintf(stderr, "Error creating shader type %d\n", ShaderType);
-		exit(0);
+		return false;
 	}
 
 	// Сохраним объект шейдера - он будет удален в декструкторе
@@ -55,7 +55,8 @@ bool Technique::AddShader(GLenum ShaderType, const char* pShaderText)
 
 	GLint success;
 	glGetShaderiv(ShaderObj, GL_COMPILE_STATUS, &success);
-	if (!success) {
+	if (!success) 
+	{
 		GLchar InfoLog[1024];
 		glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
 		fprintf(stderr, "Error compiling shader type %d: '%s'\n", ShaderType, InfoLog);
