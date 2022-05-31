@@ -48,7 +48,7 @@ public:
 		m_pTexture = NULL;
 		m_pEffect = NULL;
 		m_scale = 0.0f;
-		m_directionalLight.Color = vec3(0.0f, 0.0f, 0.0f); //установка цвета света
+		m_directionalLight.Color = vec3(1.0f, 1.0f, 1.0f); //установка цвета света
 		m_directionalLight.AmbientIntensity = 0.5f; //установка инсенсивности фонового освещения
 
 		m_directionalLight.DiffuseIntensity = 0.75f;//установка интесивности рассеивания света
@@ -207,9 +207,9 @@ private:
 	void CreateVertexBuffer(const unsigned int* pIndices, unsigned int IndexCount)
 	{
 		Vertex Vertices[4] = {
-		Vertex(vec3(-1.0f, -1.0f, 0.5773f), vec2(0.0f, 0.0f)),
-		Vertex(vec3(0.0f, -1.0f, -1.15475f), vec2(0.5f, 0.0f)),
-		Vertex(vec3(1.0f, -1.0f, 0.5773f),  vec2(1.0f, 0.0f)),
+		Vertex(vec3(-1.0f, -1.0f, 0.5f), vec2(0.0f, 0.0f)),
+		Vertex(vec3(0.0f, -1.0f, -1.0f), vec2(0.5f, 0.0f)),
+		Vertex(vec3(1.0f, -1.0f, 0.5f),  vec2(1.0f, 0.0f)),
 		Vertex(vec3(0.0f, 1.0f, 0.0f),   vec2(0.5f, 1.0f)) };
 
 		unsigned int VertexCount = ARRAY_SIZE_IN_ELEMENTS(Vertices);////
